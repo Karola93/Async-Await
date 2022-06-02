@@ -1,22 +1,8 @@
 
-// const fc = async (us, arg) => {
-//   const ol = document.getElementsByClassName('users');
-//   for (const u of us) {
-//     let i= 0;
-//     const company= u.uris.company;
-//     if (company === argg.uri) {
-//       const li = document.createElement('li');
-//       li.innerHTML= `lalalalla`;
-//       ol[i].appendChild(li);
-//       i++;
-//     }
-//   }
-// };
-
-
-const companiesFunction = async (arguments) => {
+const companiesFunction = async (arguments, usersArray) => {
 
   const table= document.getElementsByClassName('table')[0];
+  let i = 0;
   for (const argument of arguments) {
     const tr = document.createElement('tr');
     tr.innerHTML = `            <td class="firstTd">
@@ -24,23 +10,39 @@ const companiesFunction = async (arguments) => {
                     <li>${argument.name}</li>
                 </ul>
             </td>
-            <td>
+            <td class="td">
                 <ol class="users">
-                    <li>Hello</li>
                 </ol>
             </td>`
     table.appendChild(tr);
-    // await fc(users, argument);
+    const filter = usersArray.filter(n => n.company ===  argument.uri);
+    console.log(filter);
+    for (const filterElement of filter) {
+        const ol = document.getElementsByClassName('users')[i];
+        const li = document.createElement('li');
+        li.innerHTML = `${filterElement.name}`
+        ol.appendChild(li);
+    }
+    i++
   }
 }
-
-
 
 (async () => {
 
   const response =  await fetch('http://localhost:3000/companies/');
   const data = await response.json();
-  await companiesFunction(data);
+
+  const res =  await fetch('http://localhost:3000/users/');
+  const users = await res.json();
+  const usersCompany = [];
+
+  for (const user of users) {
+    const {company} = user.uris;
+    const {name} = user;
+    usersCompany.push({name, company});
+  }
+
+  await companiesFunction(data, usersCompany);
 
 })();
 
