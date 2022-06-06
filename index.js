@@ -5,24 +5,24 @@ const createTable = async (arguments, usersArray) => {
   let i = 0;
   for (const argument of arguments) {
     const tr = document.createElement('tr');
-    tr.innerHTML = `            <td class="firstTd">
-                <ul>
-                    <li>${argument.name}</li>
-                </ul>
-            </td>
-            <td class="td">
-                <ol class="users">
-                </ol>
-            </td>`
+    tr.innerHTML = `<td class="firstTd">
+                        <ul>
+                            <li>${argument.name}</li>
+                        </ul>
+                    </td>
+                    <td class="td">
+                        <ol class="users">
+                        </ol>
+                    </td>`
     table.appendChild(tr);
-    const filter = usersArray.filter(n => n.company ===  argument.uri);
+    const filter = usersArray.filter( n => n.company ===  argument.uri);
     for (const filterElement of filter) {
         const ol = document.getElementsByClassName('users')[i];
         const li = document.createElement('li');
         li.innerHTML = `${filterElement.name}`
         ol.appendChild(li);
     }
-    i++
+  i++
   }
 }
 
