@@ -1,5 +1,5 @@
 
-const companiesFunction = async (arguments, usersArray) => {
+const createTable = async (arguments, usersArray) => {
 
   const table= document.getElementsByClassName('table')[0];
   let i = 0;
@@ -28,20 +28,20 @@ const companiesFunction = async (arguments, usersArray) => {
 
 (async () => {
 
-  const response =  await fetch('http://localhost:3000/companies/');
-  const data = await response.json();
+  const companiesResponse =  await fetch('http://localhost:3000/companies/');
+  const companiesList = await companiesResponse.json();
 
-  const res =  await fetch('http://localhost:3000/users/');
-  const users = await res.json();
+  const usersResponse =  await fetch('http://localhost:3000/users/');
+  const usersList = await usersResponse.json();
   const usersCompany = [];
 
-  for (const user of users) {
+  for (const user of usersList) {
     const {company} = user.uris;
     const {name} = user;
     usersCompany.push({name, company});
   }
 
-  await companiesFunction(data, usersCompany);
+  await createTable(companiesList, usersCompany);
 
 })();
 
