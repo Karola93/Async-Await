@@ -15,12 +15,13 @@ const createTable = async (arguments, usersArray) => {
                 </ol>
             </td>`
     table.appendChild(tr);
-    const filter = usersArray.filter(n => n.company ===  argument.uri);
-    for (const filterElement of filter) {
-        const ol = document.getElementsByClassName('users')[i];
-        const li = document.createElement('li');
-        li.innerHTML = `${filterElement.name}`
-        ol.appendChild(li);
+    const filterUsersOfCompany = usersArray.filter(n => n.company ===  argument.uri);
+
+    for (const filterElement of filterUsersOfCompany) {
+        const usersOfCompanyList = document.getElementsByClassName('users')[i];
+        const companyUser = document.createElement('li');
+        companyUser.innerHTML = `${filterElement.name}`
+        usersOfCompanyList.appendChild(companyUser);
     }
     i++
   }
