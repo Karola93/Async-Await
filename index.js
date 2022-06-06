@@ -1,7 +1,7 @@
 
 const createTable = async (arguments, usersArray) => {
 
-  const table= document.getElementsByClassName('table')[0];
+  const table= document.getElementById('table');
   let i = 0;
   for (const argument of arguments) {
     const tr = document.createElement('tr');
