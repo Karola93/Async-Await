@@ -3,7 +3,9 @@ const createTable = async (arguments, usersArray) => {
 
   const table= document.getElementById('table');
   let i = 0;
+  
   for (const argument of arguments) {
+    
     const tr = document.createElement('tr');
     tr.innerHTML = `<td class="firstTd">
                         <ul>
@@ -14,8 +16,10 @@ const createTable = async (arguments, usersArray) => {
                         <ol class="users">
                         </ol>
                     </td>`
+    
     table.appendChild(tr);
     const filterUsersOfCompany = usersArray.filter( n => n.company ===  argument.uri);
+    
     for (const filterElement of filterUsersOfCompany) {
         const usersOfCompanyList = document.getElementsByClassName('users')[i];
         const companyUser = document.createElement('li');
