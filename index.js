@@ -1,14 +1,14 @@
-const createTable = async (arguments, usersArray) => {
+const createTable = async (listOfCompanies, usersArray) => {
 
     const table = document.getElementById('table');
     let i = 0;
 
-    for (const argument of arguments) {
+    for (const company of listOfCompanies) {
 
         const tr = document.createElement('tr');
         tr.innerHTML = `<td class="firstTd">
                         <ul>
-                            <li>${argument.name}</li>
+                            <li>${company.name}</li>
                         </ul>
                     </td>
                     <td class="td">
