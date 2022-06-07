@@ -17,7 +17,7 @@ const createTable = async (listOfCompanies, usersArray) => {
                     </td>`
 
         table.appendChild(tr);
-        const filterUsersOfCompany = usersArray.filter( user => user.company === argument.uri);
+        const filterUsersOfCompany = usersArray.filter( user => user.company === company.uri);
 
         for (const filterElement of filterUsersOfCompany) {
             const usersOfCompanyList = document.getElementsByClassName('users')[i];
